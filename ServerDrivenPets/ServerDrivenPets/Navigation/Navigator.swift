@@ -30,6 +30,9 @@ class Navigator {
       case .petDetail:
         if let payload = payload as? CarouselRowUIModel {
           destinationView = PetDetailScreen(petId: payload.petId).toAnyView()
+        } else if let payload = payload as? RowUIModel {
+          destinationView = PetDetailScreen(petId: payload.id)
+            .navigationTitle(payload.title).toAnyView()
         } else {
           destinationView = EmptyView().toAnyView()
         }
@@ -40,6 +43,12 @@ class Navigator {
         return SheetView(content: {
           content()
         }, destinationView: destinationView).toAnyView()
+      case .push:
+        return NavigationLink {
+          destinationView
+        } label: {
+          content()
+        }.toAnyView()
     }
   }
 }

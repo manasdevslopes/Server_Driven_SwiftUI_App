@@ -6,3 +6,12 @@
 //
 
 import Foundation
+import SwiftUI
+
+struct EmptyComponent: UIComponent {
+  var id: UUID = UUID()
+  
+  func render() -> AnyView {
+    EmptyView().toAnyView()
+  }
+}
